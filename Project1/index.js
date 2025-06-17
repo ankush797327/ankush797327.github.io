@@ -21,7 +21,7 @@ const loginForm = () => {
         userlistHTML += `<li> No registered user yet.</li>`;
     }else{
         users.forEach((user)=>{
-            userlistHTML += `<li> ${user.name} ${user.pass}</li>`
+            userlistHTML += `<li> ${user.name} ${user.pass} ${user.balance}</li>`
         });
     }
 
@@ -69,6 +69,7 @@ const saveUser = () => {
     newUser.name = name;
     newUser.email = email;
     newUser.pass = pass;
+    newUser.balance = 1000;
     users.push(newUser); // Push the new, unique user object
 
     alert("Registration successful! Please login."); // User feedback
