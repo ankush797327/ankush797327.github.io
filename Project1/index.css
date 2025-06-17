@@ -1,0 +1,19 @@
+
+
+
+.container{
+    margin: auto;
+    display: flex;
+
+    border: 1px solid gray;
+
+    justify-content: center;
+}
+
+.container div{
+    align-items: center;
+    border: 1px solid gray;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+}
