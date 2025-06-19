@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* li{
+            display: inline;
+            width: 200px;
+        } */
+
+        li{
+            display: inline-block;
+            width: 200px;
+        }
+
+        .flex{
+            display: flex;
+            justify-content: space-around;
+            flex-direction: column;
+            align-items: center;
+
+            height: 300px;
+            flex-wrap: wrap;
+            background-color: yellow;   
+        }
+
+        .grid{
+            display: grid;
+            grid-template-columns: auto auto auto;
+            background-color: pink;
+
+        }
+
+    </style>
+</head>
+<body>
+    <h1> CSS display Properties</h1>
+    <h2></h2>
+
+    <li>Home</li>
+    <li>Services</li>
+    <li>Projects</li>
+    <li>About</li>
+
+    <hr/>
+    <h2>Flexbox</h2>
+
+    <div class="flex">
+        <div>Child1</div>
+        <div>Child2</div>
+        <div>Child3</div>
+        <div>Child4</div>
+        <div>Child5</div>
+        <div>Child6</div>
+    </div>
+
+    <div class="grid">
+        <div>Child1</div>
+        <div>Child2</div>
+        <div>Child3</div>
+        <div>Child4</div>
+        <div>Child5</div>
+        <div>Child6</div>
+    </div>
+
+
+</body>
+</html>
