@@ -9,48 +9,77 @@ const products = [
 
 const showProducts = ()=>{
     let str = '';
-    
-    products.map((values)=>{
-    str+=`${values.id} - ${values.name} - ${values.price}/n`;
+    const container = document.getElementById('product-list');
+    container.innerHTML = '';
 
 
+    products.forEach(product =>{
+        const div = document.createElement('div');
+        div.className = product
+        div.innerHTML = `${product.name} - $${product.price} <button onclick="addToCart(${product.id})">Add To Cart</button>`
 
-})
-    console.log("***Product List***");
-    console.log(str);
+        container.appendChild(div)
+    })
     
 
 }
 
 
 
-const addToCart = (id)=>{
-    cart = {... cart, [id] : 1};
+const addToCart = (id) => {
+  cart = { ...cart, [id]: (cart[id] || 0) + 1 };
+  showCart();
 };
+
 
 const showCart = ()=>{
     let str= "";
-    products.map(value =>{
-        cart[value.id] > 0  &&(
-        str +=` ${value.name} - ${value.price} - ${cart[value.id]} - ${cart[value.id] * value.price}`
-        )
+    const container = document.getElementById('cart-list')
+    container.innerHTML= ''
+    
+    products.forEach(product =>{
+        const quantity = cart[product.id] || 0;
+
+        if(quantity >0){
+            const div = document.createElement('div');
+            div.className = 'cart-item';
+
+            div.innerHTML = `${product.name} -$${product.price} * ${quantity} = $${product.price * quantity}
+            <button onclick="increment(${product.id})">+</button>
+            <button onclick="decrement(${product.id})">-</button>`;
+            container.appendChild(div)
+        }
+
+        document.getElementById('total-value').innerHTML = 
+        "Total Value = $ " + calculateOrderValue()
     })
 
-    console.log("*** My cart ***");
-    console.log(str);
+
 
 }
+const calculateOrderValue = () => {
+      return products.reduce((sum, product) => {
+        return sum + product.price * (cart[product.id] || 0);
+      }, 0);
+    };
 
-const increment = (id) =>{
-    cart = {...cart, [id] : cart[id] +1}
-}   
+const increment = (id) => {
+  cart = { ...cart, [id]: (cart[id] || 0) + 1 };
+  showCart();
+};
 
-const decrement = (id) =>{
-    cart = {...cart, [id] : cart[id] -1}
-}   
-
+const decrement = (id) => {
+  if (cart[id] > 1) {
+    cart = { ...cart, [id]: cart[id] - 1 };
+  } else {
+    delete cart[id];
+  }
+  showCart();
+};
 const orderValue  = products.reduce((sum,value) =>{
     return sum+value.price * (cart[value.id] ?? 0)
 },0 )
 
-console.log(orderValue);
+   // Initialize
+    showProducts();
+    showCart();
